@@ -1,6 +1,6 @@
 # re.call
 
-## servive to help users to remember to do things
+## service to help users to remember to do things
 
 ---
 
