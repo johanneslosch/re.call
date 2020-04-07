@@ -22,13 +22,13 @@
 ---
 ## How to use it
 
-1. <subject to remember>
-2. <date> (also possible:
+1. [subject to remember]
+2. [date] (also possible:
     - td - today;
     - tm - tomorrow)
     - nw - next week (in 7 days
     - nm - next month (in 30 days))
-3. <time>
+3. [time]
 
 ---
 
