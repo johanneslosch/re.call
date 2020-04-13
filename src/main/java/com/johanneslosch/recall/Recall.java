@@ -20,6 +20,6 @@ public class Recall  extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return RecallSecret.TOKEN;
+        return ConfigReader.read("data", "config", "BotToken");
     }
 }
