@@ -4,8 +4,11 @@ import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 
+import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
+
+
 
 public class WebSockets  extends WebSocketServer {
 
@@ -27,11 +30,17 @@ public class WebSockets  extends WebSocketServer {
 
     @Override
     public void onMessage(WebSocket conn, String message) {
+        HandleMessages.message(message);
         System.out.printf("received message from %s: %s%n", conn.getRemoteSocketAddress(), message);
     }
 
     @Override
     public void onMessage( WebSocket conn, ByteBuffer message ) {
+        try {
+            HandleMessages.message(new String(message.array(), "ASCII"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         System.out.printf("received ByteBuffer from %s%n", conn.getRemoteSocketAddress());
     }
 
