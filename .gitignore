@@ -2,3 +2,4 @@
 target/
 
 src/main/java/com/johanneslosch/recall/RecallSecret.java
+/data/config.conf
