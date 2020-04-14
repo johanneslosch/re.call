@@ -1,4 +1,4 @@
-package com.johanneslosch.recall;
+package com.johanneslosch.recall.client;
 
 import com.johanneslosch.recall.util.ConfigReader;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -11,6 +11,8 @@ public class Recall  extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             //message content
             update.getMessage().getText();
+            System.out.println(String.format("RECEIVED: message: %s -> at: %s -> from: %s", update.getMessage().getText(), System.nanoTime(), update.getMessage().getChat().getUserName()));
+            Client.client.send(String.format("RECEIVED: message: %s -> at: %s -> from: %s", update.getMessage().getText(), System.nanoTime(), update.getMessage().getChat().getUserName()));
         }
     }
 
