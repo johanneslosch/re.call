@@ -17,7 +17,7 @@ public class WebSockets  extends WebSocketServer {
     public void onOpen(WebSocket conn, ClientHandshake handshake) {
         conn.send("Welcome to the server!"); //This method sends a message to the new client
         broadcast(String.format("new connection: %s", handshake.getResourceDescriptor())); //This method sends a message to all clients connected
-        System.out.printf("new connection to %s%n", conn.getRemoteSocketAddress());
+        //System.out.printf("new connection to %s%n", conn.getRemoteSocketAddress());
     }
 
     @Override
