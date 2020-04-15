@@ -27,7 +27,7 @@
     - td - today;
     - tm - tomorrow)
     - nw - next week (in 7 days
-    - nm - next month (in 30 days))
+    - nm - next month (in 25 days))
 3. [time]
 
 ---
