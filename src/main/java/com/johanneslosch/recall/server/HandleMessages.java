@@ -14,11 +14,13 @@ public class HandleMessages {
 
     private static void handleMessage(String message) {
         String[] part = message.split(";", 25500);
+        String user = message.substring( message.indexOf("-> from:")).replace("-> from:", "");
         String msg = part[0];
         String date = part[1];
-        String time = part[2];
-        String user = message.substring(message.indexOf("from: "));
-        System.out.println(String.format("-> %s at: %s: %s from: %s", msg, date, time, user));
+        String time = part[2].replace("-> from:", "").replace(user, "");
+        System.out.println(String.format("-> %s at: %s: %s / %s", msg, date, time, user));
+
+        System.out.println(String.format("message: %s by %s time: %sdate: %s", msg, user, time, handleDate(date)));
     }
 
     /*
