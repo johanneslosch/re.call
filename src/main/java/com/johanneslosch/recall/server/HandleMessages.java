@@ -1,7 +1,8 @@
 package com.johanneslosch.recall.server;
 
-import org.apache.http.client.utils.DateUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class HandleMessages {
@@ -19,26 +20,36 @@ public class HandleMessages {
         String user = message.substring(message.indexOf("from: "));
         System.out.println(String.format("-> %s at: %s: %s from: %s", msg, date, time, user));
     }
-//TODO: handle Dates
+
     /*
     - td - today;
     - tm - tomorrow)
     - nw - next week (in 7 days
-    - nm - next month (in 30 days))
+    - nm - next month (in 25 days))
      */
     private static String handleDate(String date){
         String finalDate = null;
         if(date.equalsIgnoreCase("td")){
-            DateUtils.formatDate(new Date(), String.valueOf(java.util.Calendar.DAY_OF_MONTH));
+            finalDate = getDate(0);
         }else if(date.equalsIgnoreCase("tm")){
-
+            finalDate = getDate(1);
         }else if(date.equalsIgnoreCase("nw")){
-
+            finalDate = getDate(7);
         }else if(date.equalsIgnoreCase("nm")){
-
+            finalDate = getDate(25);
         }else{
             finalDate = date;
         }
         return finalDate;
+    }
+
+    //return Date (in days) in dd.MM.yyyy
+    private static String getDate(int days){
+        Date dt = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dt);
+        c.add(Calendar.DATE, days);
+        dt = c.getTime();
+        return new SimpleDateFormat("dd.MM.yyyy").format(dt);
     }
 }
