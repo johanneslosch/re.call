@@ -18,7 +18,7 @@ public class Recall  extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "re_call_bot";
+        return ConfigReader.read("data", "config", "BotName");
     }
 
     @Override
