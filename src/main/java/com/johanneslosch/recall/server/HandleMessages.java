@@ -21,7 +21,7 @@ public class HandleMessages {
     String[] part = message.split(";", 25500);
     String user =
         message.substring(message.indexOf("-> from:")).replace("-> from:", "");
-    String msg = part[0];
+    String msg = part[0].substring(19);
     String date = part[1];
     String time = part[2].replace("-> from:", "").replace(user, "");
     System.out.println(
