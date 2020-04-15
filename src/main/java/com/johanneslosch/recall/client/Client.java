@@ -24,5 +24,10 @@ public class Client {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+        while (true){
+            if(!client.isOpen()){
+                client.reconnect();
+            }
+        }
     }
 }
