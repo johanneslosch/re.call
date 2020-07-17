@@ -9,8 +9,18 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class Client {
-    static WebSocketClient client;
+    static WebSocketClient WSClient;
     public static void main(String[] args) {
+        try {
+            WSClient = new SocketClient(new URI("ws://localhost:8887"));
+            WSClient.connect();
+            if (WSClient.isClosed()) {
+                System.err.println("Web Socket server not running!");
+                System.exit(1);
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         ApiContextInitializer.init();
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
         try {
@@ -18,15 +28,16 @@ public class Client {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-        try {
-            client = new SocketClient(new URI("ws://localhost:8887"));
-            client.connect();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        while (true){
-            if(!client.isOpen()){
-                client.reconnect();
+        int counter = 0;
+        while (true) {
+            if (!WSClient.isOpen()) {
+                WSClient.reconnect();
+                counter++;
+                if (counter == 10) {
+                    WSClient.close();
+                    System.err.println("Web Socket server not running!");
+                    System.exit(1);
+                }
             }
         }
     }
