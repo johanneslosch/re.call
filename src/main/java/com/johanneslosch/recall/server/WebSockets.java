@@ -1,11 +1,12 @@
 package com.johanneslosch.recall.server;
 
-import java.io.UnsupportedEncodingException;
-import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
+
+import java.io.UnsupportedEncodingException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 
 public class WebSockets extends WebSocketServer {
 
@@ -55,6 +56,6 @@ public class WebSockets extends WebSocketServer {
 
   @Override
   public void onStart() {
-    System.out.println("server started successfully");
+    System.out.println("server started successfully on port:" + Server.port);
   }
 }

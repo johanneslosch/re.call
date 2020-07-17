@@ -1,5 +1,5 @@
 .idea/
 target/
 
-src/main/java/com/johanneslosch/recall/RecallSecret.java
+recall.iml
 /data/config.conf
