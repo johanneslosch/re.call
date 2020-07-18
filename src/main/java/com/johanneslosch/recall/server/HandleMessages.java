@@ -27,7 +27,8 @@ public class HandleMessages {
     System.out.println(
         String.format("-> %s at: %s: %s / %s", msg, date, time, user));
 
-    System.out.println(String.format("message: %s by %s time: %sdate: %s", msg, user, time, handleDate(date)));
+    System.out.println(String.format("message: %s by %s time: %sdate: %s", msg,
+                                     user, time, handleDate(date)));
 
     try {
       MySQL.MySQLUseDataManager.setData(msg, user, handleDate(date), time);

@@ -1,8 +1,7 @@
 package com.johanneslosch.recall.server;
 
-import org.java_websocket.server.WebSocketServer;
-
 import java.net.InetSocketAddress;
+import org.java_websocket.server.WebSocketServer;
 
 public class Server {
   public static int port = 8887;
