@@ -1,14 +1,15 @@
 package com.johanneslosch.recall.server;
 
+import com.johanneslosch.recall.util.ConfigReader;
 import org.java_websocket.server.WebSocketServer;
 
 import java.net.InetSocketAddress;
 
 public class Server {
-  public static int port = 8887;
-  public static void main(String[] args) {
-    String host = "localhost";
+  public static String host = ConfigReader.read("data", "server_config", "WSurl");
+  public static int port = Integer.parseInt(ConfigReader.read("data", "server_config", "WSport"));
 
+  public static void main(String[] args) {
     WebSocketServer server = new WebSockets(new InetSocketAddress(host, port));
     server.run();
   }

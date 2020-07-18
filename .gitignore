@@ -2,4 +2,5 @@
 target/
 
 recall.iml
-/data/config.conf
+/data/server_config.conf
+/data/client_config.conf

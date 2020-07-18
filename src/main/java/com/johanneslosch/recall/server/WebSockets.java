@@ -4,9 +4,9 @@ import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 
-import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 
 public class WebSockets extends WebSocketServer {
 
@@ -39,13 +39,9 @@ public class WebSockets extends WebSocketServer {
 
   @Override
   public void onMessage(WebSocket conn, ByteBuffer message) {
-    try {
-      HandleMessages.message(new String(message.array(), "ASCII"));
-    } catch (UnsupportedEncodingException e) {
-      e.printStackTrace();
-    }
+    HandleMessages.message(new String(message.array(), StandardCharsets.US_ASCII));
     System.out.printf("received ByteBuffer from %s%n",
-                      conn.getRemoteSocketAddress());
+            conn.getRemoteSocketAddress());
   }
 
   @Override
@@ -56,6 +52,6 @@ public class WebSockets extends WebSocketServer {
 
   @Override
   public void onStart() {
-    System.out.println("server started successfully on port:" + Server.port);
+    System.out.println("server started successfully");
   }
 }
