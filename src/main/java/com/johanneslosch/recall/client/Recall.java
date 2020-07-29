@@ -11,6 +11,7 @@ public class Recall extends TelegramLongPollingBot {
     if (update.hasMessage() && update.getMessage().hasText()) {
       // message content
       update.getMessage().getText();
+      System.out.println(update.getMessage().getText());
       Client.WSClient.send(String.format(
               "RECEIVED: message: %s -> from: %s", update.getMessage().getText(),
               update.getMessage().getChat().getFirstName()));

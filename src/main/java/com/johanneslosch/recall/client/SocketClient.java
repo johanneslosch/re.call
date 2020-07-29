@@ -3,6 +3,7 @@ package com.johanneslosch.recall.client;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.handshake.ServerHandshake;
+import tech.jslol.javautillities.data.Logger;
 
 import java.net.URI;
 import java.nio.ByteBuffer;
@@ -21,16 +22,18 @@ public class SocketClient extends WebSocketClient {
     public void onOpen(ServerHandshake handshakedata) {
         send(String.format("Connect from %s", handshakedata.getHttpStatus()));
         System.out.println("new connection opened");
+        Logger.msg("new connection opened");
     }
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
-        System.out.println("closed with exit code " + code + " additional info: " + reason);
+        System.out.printf("closed with exit code %d additional info: %s%n", code, reason);
+        Logger.msg(String.format("closed with exit code %d additional info: %s", code, reason));
     }
 
     @Override
     public void onMessage(String message) {
-        System.out.println("received message: " + message);
+        System.out.printf("received message: %s%n", message);
     }
 
     @Override
@@ -40,6 +43,7 @@ public class SocketClient extends WebSocketClient {
 
     @Override
     public void onError(Exception ex) {
-        System.err.println("an error occurred:" + ex);
+        System.err.printf("an error occurred:%s%n", ex);
+        Logger.error(String.format("an error occurred:%s", ex));
     }
 }

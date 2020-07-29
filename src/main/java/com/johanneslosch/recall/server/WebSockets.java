@@ -3,6 +3,7 @@ package com.johanneslosch.recall.server;
 import org.java_websocket.WebSocket;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
+import tech.jslol.javautillities.data.Logger;
 
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -47,7 +48,9 @@ public class WebSockets extends WebSocketServer {
   @Override
   public void onError(WebSocket conn, Exception ex) {
     System.err.printf("an error occurred on connection %s:%s%n",
-                      conn.getRemoteSocketAddress(), ex);
+            conn.getRemoteSocketAddress(), ex);
+    Logger.error(String.format("an error occurred on connection %s:%s%n",
+            conn.getRemoteSocketAddress(), ex));
   }
 
   @Override

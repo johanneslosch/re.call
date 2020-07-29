@@ -1,6 +1,8 @@
 package com.johanneslosch.recall.server;
 
 import com.johanneslosch.recall.util.ConfigReader;
+import tech.jslol.javautillities.data.Logger;
+
 import java.sql.*;
 
 /*
@@ -34,6 +36,7 @@ public class MySQL {
       try {
         connection = DriverManager.getConnection(DATABASE_URL, USER, PASSWORD);
         System.out.println("Database connected!");
+        Logger.msg("SERVER  -- Database connected!");
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -47,6 +50,7 @@ public class MySQL {
       } catch (SQLException throwables) {
         throwables.printStackTrace();
       }
+      Logger.msg("SERVER  -- Database Disconnected");
       System.out.println("Database Disconnected");
     }
   }
